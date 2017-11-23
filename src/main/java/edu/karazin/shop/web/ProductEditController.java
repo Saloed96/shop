@@ -15,46 +15,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("product")
 public class ProductEditController {
 
-	private static final Logger log = LoggerFactory.getLogger(ProductEditController.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductEditController.class);
 
-	private final ProductService productService;
+    private final ProductService productService;
 
-	public ProductEditController(@Autowired ProductService productService) {
-		this.productService = productService;
-	}
+    public ProductEditController(@Autowired ProductService productService) {
+        this.productService = productService;
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String newProduct(Model model) {
-		log.info("Render form for new product");
+    @RequestMapping(method = RequestMethod.GET)
+    public String newProduct(Model model) {
+        log.info("Render form for new product");
 
-		model.addAttribute("product", new Product(null, "", ""));
-		return "product-edit";
-	}
+        model.addAttribute("product", new Product(null, "", ""));
+        return "product-edit";
+    }
 
-	@RequestMapping(method = RequestMethod.GET, path = "{id}")
-	public String editProduct(Model model, @PathVariable("id") Long productId) {
-		log.info("Edit product");
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}"/*, path = "{id}"*/)
+    public String editProduct(Model model, @PathVariable("id") Long productId) {
+        log.info("Edit product");
 
-		Product p = productService.getProduct(productId);
-		if (p == null) {
-			throw new NotFoundException();
-		}
+        Product p = productService.getProduct(productId);
+        if (p == null) {
+            throw new NotFoundException();
+        }
 
-		model.addAttribute("product", p);
-		return "product-edit";
-	}
+        model.addAttribute("product", p);
+        return "product-edit";
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String addProduct(Model model, Product product) {
-		log.info("Add product");
-		productService.addProduct(product);
-		return "redirect:/products";
-	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "{id}")
-	public String updateProduct(Model model, Product product) {
-		log.info("Update product");
-		productService.updateProduct(product);
-		return "redirect:/products";
-	}
+    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}"/*, path = "{id}"*/)
+    public String deleteProduct(Model model, @PathVariable("id") Long productId) {
+        log.info("Delete product");
+        productService.removeProduct(productId);
+        return "redirect:/products";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String addProduct(Model model, Product product) {
+        log.info("Add product");
+        productService.addProduct(product);
+        return "redirect:/products";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "{id}")
+    public String updateProduct(Model model, Product product) {
+        log.info("Update product");
+        productService.updateProduct(product);
+        return "redirect:/products";
+    }
 }

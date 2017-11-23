@@ -20,8 +20,8 @@
     <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/layout.css">
-    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/style.css">
+    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/layout.css">
+    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/style.css">
     <script type="text/javascript" src="${resourceContext}/src/main/webapp/static/js/bootstrap.min.js"></script>
 
     <!--[if lt IE 9]>
@@ -32,11 +32,12 @@
 <body>
 <div role="navigation">
     <div class="navbar navbar-inverse">
-        <a href="product" class="navbar-brand">Online Shop</a>
+        <a href="products" class="navbar-brand">Online Shop</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="products">Product List</a></li>
-                <li><a href="product">New Product</a></li>
+                <li><a href="/products">Product List</a></li>
+                <li><a href="/product">New Product</a></li>
+                <li><a href="/cart">Cart</a></li>
             </ul>
         </div>
     </div>

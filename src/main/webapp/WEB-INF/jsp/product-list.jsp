@@ -17,12 +17,12 @@
     <title>Product List</title>
 
     <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/layout.css">
-    <link rel="stylesheet" href="${resourceContext}/src/main/webapp/static/css/style.css">
-    <script type="text/javascript" src="${resourceContext}/src/main/webapp/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${resourceContext}/layout.css">
+    <link rel="stylesheet" href="${resourceContext}/style.css">
+    <script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
 
     <!--[if lt IE 9]>
     <script src="static/js/html5shiv.min.js"></script>
@@ -32,12 +32,12 @@
 <body>
 <div role="navigation">
     <div class="navbar navbar-inverse">
-        <a href="product" class="navbar-brand">Online Shop</a>
+        <a href="products" class="navbar-brand">Online Shop</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="products">Product List</a></li>
-                <li><a href="product">New Product</a></li>
-                <li><a href="cart">Cart</a></li>
+                <li><a href="/products">Product List</a></li>
+                <li><a href="/product">New Product</a></li>
+                <li><a href="/cart">Cart</a></li>
             </ul>
         </div>
     </div>
@@ -87,8 +87,10 @@
                 <h3>${prod.title} ( ${prod.balance} )</h3>
                 <p>${prod.description}</p>
                 <div class="action-box">
-                    <a href="#" class="btn btn-info" role="button">Add to Cart</a>
-                    <a href="#" class="btn btn-info" role="button">Buy</a>
+                    <%--<a href="#" class="btn btn-info" role="button">Add to Cart</a>--%>
+                    <%--<a href="#" class="btn btn-info" role="button">Buy</a>--%>
+                    <a href="/cart?add&prodId=${prod.id}" class="btn btn-info" role="button">Add to Cart</a>
+                    <a href="/order?prodId=${prod.id}" class="btn btn-info" role="button">Buy</a>
                     <a href="/product/edit/${prod.id}" class="btn btn-warning" role="button">Edit</a>
                     <a href="/product/delete/${prod.id}" class="btn btn-danger" role="button">Delete</a>
 

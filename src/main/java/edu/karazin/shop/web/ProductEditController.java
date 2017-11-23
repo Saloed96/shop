@@ -31,7 +31,7 @@ public class ProductEditController {
         return "product-edit";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}"/*, path = "{id}"*/)
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
     public String editProduct(Model model, @PathVariable("id") Long productId) {
         log.info("Edit product");
 
@@ -45,7 +45,7 @@ public class ProductEditController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}"/*, path = "{id}"*/)
+    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
     public String deleteProduct(Model model, @PathVariable("id") Long productId) {
         log.info("Delete product");
         productService.removeProduct(productId);
@@ -59,7 +59,7 @@ public class ProductEditController {
         return "redirect:/products";
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "{id}")
+    @RequestMapping(method = RequestMethod.POST, path = "edit/{id}")
     public String updateProduct(Model model, Product product) {
         log.info("Update product");
         productService.updateProduct(product);

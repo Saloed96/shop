@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="resourceContext" value="${pageContext.request.contextPath}"/>
 
@@ -87,13 +88,14 @@
                 <h3>${prod.title} ( ${prod.balance} )</h3>
                 <p>${prod.description}</p>
                 <div class="action-box">
-                    <%--<a href="#" class="btn btn-info" role="button">Add to Cart</a>--%>
-                    <%--<a href="#" class="btn btn-info" role="button">Buy</a>--%>
-                    <a href="/cart?add&prodId=${prod.id}" class="btn btn-info" role="button">Add to Cart</a>
-                    <a href="/order?prodId=${prod.id}" class="btn btn-info" role="button">Buy</a>
-                    <a href="/product/edit/${prod.id}" class="btn btn-warning" role="button">Edit</a>
-                    <a href="/product/delete/${prod.id}" class="btn btn-danger" role="button">Delete</a>
-
+                    <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+                        <a href="/cart?add&prodId=${prod.id}" class="btn btn-info" role="button">Add to Cart</a>
+                        <a href="/order?prodId=${prod.id}" class="btn btn-info" role="button">Buy</a>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <a href="/product/edit/${prod.id}" class="btn btn-warning" role="button">Edit</a>
+                        <a href="/product/delete/${prod.id}" class="btn btn-danger" role="button">Delete</a>
+                    </sec:authorize>
                 </div>
             </li>
         </c:forEach>
@@ -101,7 +103,15 @@
 
 
     <div class="action-box">
-        <a href="/product" class="btn btn-warning" role="button">New product</a>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <a href="/product" class="btn btn-warning" role="button">New product</a>
+        </sec:authorize>
+        <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+            <a href="/login" class="btn btn-warning" role="button">Login</a>
+        </sec:authorize>
+        <sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
+            <a href="/logout" class="btn btn-warning" role="button">Logout</a>
+        </sec:authorize>
     </div>
 
 </div>

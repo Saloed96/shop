@@ -1,7 +1,7 @@
 /* Elements disposition and block size */
 .center {
     margin: auto;
-    width: 650px;
+    width: 600px;
 }
 
 .search-box {
@@ -30,7 +30,7 @@
 .prod-item {
     list-style: none;
     float: left;
-    width: 350px;
+    width: 288px;
     padding: 5px;
 }
 

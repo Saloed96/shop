@@ -64,10 +64,14 @@
                     <br/>
                     <form:input path="balance"/>
                     <br/>
-                    <form:label path="title">Image:</form:label>
-                    <br/>
-                    <form:input path="image"/>
-                    <br/>
+                    <%--<form:label path="title">Image:</form:label>--%>
+                    <%--<br/>--%>
+                    <%--<form:button name="Browse" value="/browse" path="image"/>--%>
+                    <%--<br/>--%>
+                    <p>
+                        <label for="image">Product Images: </label>
+                        <input type="file" name="image" multiple="multiple"/>
+                    </p>
                 </fieldset>
                 <input type="submit" value="Save" class="btn-primary form-control" style="margin-top: 20px;"/>
             </form:form>

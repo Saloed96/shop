@@ -30,6 +30,6 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public String searchProducts(Model model, @ModelAttribute("userForm") UserForm form) {
         userService.createUser(form.convertToUser());
-        return "forward:/login";
+        return "redirect:/login";
     }
 }

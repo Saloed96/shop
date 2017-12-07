@@ -8,4 +8,7 @@ https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysq
 
 https://www.mkyong.com/spring-boot/spring-boot-hello-world-example-thymeleaf/
 
+netstat -nao | findstr 8080
 taskkill /F /PID 4796
+
+http://idea.higherbros.club

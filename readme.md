@@ -8,4 +8,9 @@ https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysq
 
 https://www.mkyong.com/spring-boot/spring-boot-hello-world-example-thymeleaf/
 
-taskkill /F /PID 4796
+netstat -ano | findstr 8080
+taskkill /pid <port>
+
+http://www.thymeleaf.org/doc/articles/petclinic.html
+http://www.thymeleaf.org/doc/articles/layouts.html
+https://github.com/thymeleaf/thymeleafexamples-layouts

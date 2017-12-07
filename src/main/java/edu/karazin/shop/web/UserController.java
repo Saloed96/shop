@@ -21,15 +21,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String userCreate(Model model){
+    public String userCreate(Model model) {
         model.addAttribute("userForm", new UserForm());
         model.addAttribute("roles", Role.values());
         return "user";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String searchProducts(Model model,
-                                 @ModelAttribute("userForm") UserForm form) {
+    public String searchProducts(Model model, @ModelAttribute("userForm") UserForm form) {
         userService.createUser(form.convertToUser());
         return "forward:/login";
     }

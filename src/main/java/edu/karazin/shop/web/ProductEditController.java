@@ -2,7 +2,6 @@ package edu.karazin.shop.web;
 
 import edu.karazin.shop.model.Product;
 import edu.karazin.shop.service.ProductService;
-import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.io.File;
-import java.util.List;
 
 @Controller
 @RequestMapping("product")
@@ -48,6 +44,7 @@ public class ProductEditController {
         return "product-edit";
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
     public String deleteProduct(Model model, @PathVariable("id") Long productId) {
         log.info("Delete product");
@@ -62,20 +59,7 @@ public class ProductEditController {
         return "redirect:/products";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/browse")
-    public List<File> browseProduct(Model model, Product product) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG", "*.png"),
-                new FileChooser.ExtensionFilter("All", "*.*"));
-        fileChooser.setTitle("Choose Image");
-        List<File> files = fileChooser.showOpenMultipleDialog(null);
-        System.out.println(files);
-        log.info("Browse product");
-//        productService.addProduct(product);
-        return files;
-    }
-
-    @RequestMapping(method = RequestMethod.POST, path = "edit/{id}")
+    @RequestMapping(method = RequestMethod.POST, path = "/edit/{id}")
     public String updateProduct(Model model, Product product) {
         log.info("Update product");
         productService.updateProduct(product);

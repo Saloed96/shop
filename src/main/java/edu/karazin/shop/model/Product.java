@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Product {
 
 	@Id
-    @GeneratedValue
+	@GeneratedValue
 	private Long id;
 	private String title;
 	private String description;
@@ -90,18 +90,18 @@ public class Product {
 		this.balance = balance;
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
 
-        Product product = (Product) o;
+		Product product = (Product) o;
 
-        return id != null ? id.equals(product.id) : product.id == null;
-    }
+		return id.equals(product.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
 }
